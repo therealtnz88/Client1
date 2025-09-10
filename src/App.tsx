@@ -11,7 +11,10 @@ import {
   MapPin,
   Menu,
   X,
-  Star
+  Star,
+  BarChart3,
+  Shield,
+  Zap
 } from 'lucide-react';
 
 function Header() {
@@ -19,28 +22,27 @@ function Header() {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">ProfResults</span>
+            <span className="text-xl font-bold text-gray-900">ConsultPro</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-            <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors">Results</a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
+            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
+            <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Results</a>
+            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
+            <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-200 font-semibold shadow-sm hover:shadow-md">
               Get Started
             </button>
           </nav>
 
           <button 
-            className="md:hidden"
+            className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -48,14 +50,13 @@ function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t border-gray-100">
             <nav className="flex flex-col space-y-4">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-              <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors">Results</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors w-fit">
+              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
+              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
+              <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Results</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
+              <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-200 font-semibold w-fit">
                 Get Started
               </button>
             </nav>
@@ -68,44 +69,25 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Drive <span className="text-blue-600">Professional Results</span> for Your Business
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Transform your business with our proven strategies and expert consulting. 
-              We deliver measurable results that drive growth and maximize your ROI.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-lg font-semibold">
-                <span>Start Your Transformation</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-600 hover:text-white transition-colors text-lg font-semibold">
-                Schedule Consultation
-              </button>
-            </div>
-          </div>
-          <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-              alt="Business professionals in meeting"
-              className="rounded-2xl shadow-2xl"
-            />
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">250%</p>
-                  <p className="text-sm text-gray-600">Average ROI Increase</p>
-                </div>
-              </div>
-            </div>
+    <section id="home" className="bg-white py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            Transform Your Business with 
+            <span className="text-blue-600 block">Expert Consulting</span>
+          </h1>
+          <p className="text-xl lg:text-2xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
+            We help ambitious companies achieve breakthrough results through proven strategies, 
+            data-driven insights, and personalized consulting solutions.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center space-x-2 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              <span>Start Your Transformation</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg hover:border-blue-600 hover:text-blue-600 transition-all duration-200 text-lg font-semibold">
+              Schedule Free Consultation
+            </button>
           </div>
         </div>
       </div>
@@ -118,41 +100,51 @@ function Services() {
     {
       icon: Target,
       title: "Strategic Planning",
-      description: "Develop comprehensive business strategies that align with your goals and drive sustainable growth."
+      description: "Develop comprehensive roadmaps that align your team and drive sustainable growth through proven methodologies."
     },
     {
-      icon: TrendingUp,
-      title: "Performance Optimization",
-      description: "Identify bottlenecks and optimize your operations for maximum efficiency and profitability."
+      icon: BarChart3,
+      title: "Performance Analytics",
+      description: "Leverage data-driven insights to identify opportunities and optimize your operations for maximum efficiency."
     },
     {
       icon: Users,
-      title: "Team Development",
-      description: "Build high-performing teams through leadership training and organizational development."
+      title: "Leadership Development",
+      description: "Build high-performing teams and develop leadership capabilities that drive organizational excellence."
+    },
+    {
+      icon: Zap,
+      title: "Digital Transformation",
+      description: "Modernize your processes and technology stack to stay competitive in today's digital landscape."
+    },
+    {
+      icon: Shield,
+      title: "Risk Management",
+      description: "Identify and mitigate potential risks while building resilient systems for long-term success."
     },
     {
       icon: Award,
-      title: "Process Excellence",
-      description: "Implement best practices and quality systems to ensure consistent, superior results."
+      title: "Process Optimization",
+      description: "Streamline workflows and implement best practices to enhance productivity and quality outcomes."
     }
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-20 lg:py-28 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Our Professional Services
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            Our Core Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We provide comprehensive consulting services designed to transform your business 
-            and deliver measurable results across all areas of operation.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            We provide comprehensive consulting solutions designed to address your unique challenges 
+            and accelerate your path to success.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-100">
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
                 <service.icon className="w-8 h-8 text-blue-600" />
               </div>
@@ -166,69 +158,104 @@ function Services() {
   );
 }
 
-function Results() {
-  const stats = [
-    { number: "500+", label: "Clients Served" },
-    { number: "250%", label: "Average ROI Increase" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "15+", label: "Years Experience" }
+function SocialProof() {
+  const logos = [
+    { name: "TechCorp", width: "w-32" },
+    { name: "InnovateCo", width: "w-28" },
+    { name: "GlobalTech", width: "w-36" },
+    { name: "FutureSoft", width: "w-30" },
+    { name: "NextGen", width: "w-32" },
+    { name: "ProBusiness", width: "w-34" }
   ];
 
-  const testimonials = [
+  return (
+    <section className="py-16 bg-white border-y border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="text-gray-500 font-medium text-lg">Trusted by industry leaders</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60">
+          {logos.map((logo, index) => (
+            <div key={index} className={`${logo.width} h-12 bg-gray-200 rounded-lg flex items-center justify-center`}>
+              <span className="text-gray-400 font-semibold text-sm">{logo.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Results() {
+  const stats = [
+    { number: "500+", label: "Projects Completed", description: "Successful transformations delivered" },
+    { number: "250%", label: "Average ROI", description: "Return on investment achieved" },
+    { number: "98%", label: "Client Satisfaction", description: "Clients would recommend us" },
+    { number: "15+", label: "Years Experience", description: "Industry expertise and knowledge" }
+  ];
+
+  const caseStudies = [
     {
-      name: "Sarah Johnson",
-      company: "Tech Innovations Inc.",
-      text: "ProfResults transformed our business operations completely. We saw a 300% increase in efficiency within 6 months.",
-      rating: 5
+      company: "TechStartup Inc.",
+      industry: "Technology",
+      challenge: "Scaling operations efficiently",
+      result: "300% revenue growth in 18 months",
+      metric: "3x Growth"
     },
     {
-      name: "Michael Chen",
-      company: "Global Manufacturing",
-      text: "Their strategic planning helped us expand into new markets successfully. Exceptional results and professional service.",
-      rating: 5
+      company: "Manufacturing Co.",
+      industry: "Manufacturing",
+      challenge: "Process optimization needed",
+      result: "40% reduction in operational costs",
+      metric: "40% Savings"
     },
     {
-      name: "Emily Rodriguez",
-      company: "Healthcare Solutions",
-      text: "The team development program revolutionized our workplace culture. Highly recommend their services.",
-      rating: 5
+      company: "Retail Chain",
+      industry: "Retail",
+      challenge: "Digital transformation required",
+      result: "150% increase in online sales",
+      metric: "150% Increase"
     }
   ];
 
   return (
-    <section id="results" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="results" className="py-20 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Proven Results That Matter
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            Proven Results That Drive Success
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our track record speaks for itself. See how we've helped businesses 
-            achieve extraordinary results and sustainable growth.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Our track record speaks for itself. See how we've helped businesses achieve 
+            extraordinary outcomes and sustainable growth.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-5xl font-bold text-blue-600 mb-2">{stat.number}</div>
-              <div className="text-gray-600 text-lg">{stat.label}</div>
+              <div className="text-4xl lg:text-5xl font-bold text-blue-600 mb-2">{stat.number}</div>
+              <div className="text-gray-900 text-lg font-semibold mb-1">{stat.label}</div>
+              <div className="text-gray-500 text-sm">{stat.description}</div>
             </div>
           ))}
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm">
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
-              <div>
-                <div className="font-bold text-gray-900">{testimonial.name}</div>
-                <div className="text-gray-500">{testimonial.company}</div>
+          {caseStudies.map((study, index) => (
+            <div key={index} className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+              <div className="text-3xl font-bold text-blue-600 mb-4">{study.metric}</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{study.company}</h3>
+              <p className="text-gray-500 text-sm mb-4">{study.industry}</p>
+              <div className="space-y-3">
+                <div>
+                  <span className="text-gray-600 font-medium">Challenge: </span>
+                  <span className="text-gray-700">{study.challenge}</span>
+                </div>
+                <div>
+                  <span className="text-gray-600 font-medium">Result: </span>
+                  <span className="text-gray-700">{study.result}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -238,154 +265,25 @@ function Results() {
   );
 }
 
-function About() {
+function CallToAction() {
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose ProfResults?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              With over 15 years of experience in business consulting, we've helped 
-              hundreds of companies achieve their goals and exceed their expectations.
-            </p>
-            
-            <div className="space-y-6">
-              {[
-                "Proven methodologies with measurable results",
-                "Expert team with diverse industry experience",
-                "Customized solutions for your unique challenges",
-                "Ongoing support and partnership approach"
-              ].map((item, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                  <span className="text-gray-700 text-lg">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-              alt="Professional team collaboration"
-              className="rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  return (
-    <section id="contact" className="py-20 bg-blue-600">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div className="text-white">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Get in touch with our experts today and discover how we can help 
-              you achieve extraordinary results.
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold">Call Us</div>
-                  <div className="text-blue-100">+1 (555) 123-4567</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold">Email Us</div>
-                  <div className="text-blue-100">contact@profresults.com</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold">Visit Us</div>
-                  <div className="text-blue-100">123 Business Ave, Suite 100<br />New York, NY 10001</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-8 rounded-2xl">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Company Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                />
-              </div>
-              <div>
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+    <section className="py-20 lg:py-28 bg-blue-600">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+          Ready to Transform Your Business?
+        </h2>
+        <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+          Join hundreds of successful companies that have accelerated their growth with our proven consulting approach. 
+          Let's discuss how we can help you achieve your goals.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-50 transition-all duration-200 flex items-center space-x-2 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            <span>Schedule Free Consultation</span>
+            <ArrowRight className="w-5 h-5" />
+          </button>
+          <button className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-200 text-lg font-semibold">
+            Download Case Studies
+          </button>
         </div>
       </div>
     </section>
@@ -394,53 +292,78 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
+    <footer className="bg-gray-900 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
+          <div className="md:col-span-1">
+            <div className="flex items-center space-x-2 mb-6">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <TrendingUp className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">ProfResults</span>
+              <span className="text-xl font-bold">ConsultPro</span>
             </div>
-            <p className="text-gray-400 leading-relaxed">
-              Transforming businesses through professional consulting and proven strategies.
+            <p className="text-gray-400 leading-relaxed mb-6">
+              Transforming businesses through expert consulting and proven strategies that deliver measurable results.
             </p>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 text-gray-400">
+                <Phone className="w-4 h-4" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3 text-gray-400">
+                <Mail className="w-4 h-4" />
+                <span>hello@consultpro.com</span>
+              </div>
+              <div className="flex items-center space-x-3 text-gray-400">
+                <MapPin className="w-4 h-4" />
+                <span>123 Business Ave, Suite 100</span>
+              </div>
+            </div>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-gray-400">
+            <h4 className="font-semibold mb-6 text-lg">Services</h4>
+            <ul className="space-y-3 text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">Strategic Planning</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Performance Optimization</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Team Development</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Process Excellence</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Performance Analytics</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Leadership Development</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Digital Transformation</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Risk Management</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-400">
+            <h4 className="font-semibold mb-6 text-lg">Company</h4>
+            <ul className="space-y-3 text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Our Team</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>+1 (555) 123-4567</li>
-              <li>contact@profresults.com</li>
-              <li>123 Business Ave, Suite 100<br />New York, NY 10001</li>
+            <h4 className="font-semibold mb-6 text-lg">Resources</h4>
+            <ul className="space-y-3 text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Free Consultation</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Industry Reports</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Whitepapers</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Webinars</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 ProfResults. All rights reserved.</p>
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 mb-4 md:mb-0">
+            &copy; 2024 ConsultPro. All rights reserved.
+          </p>
+          <div className="flex space-x-6 text-gray-400">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -452,10 +375,10 @@ function App() {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <SocialProof />
       <Services />
-      <About />
       <Results />
-      <Contact />
+      <CallToAction />
       <Footer />
     </div>
   );
