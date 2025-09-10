@@ -1,19 +1,286 @@
 import React, { useState } from 'react';
-import { Bot, MessageSquare, Database, Zap, ChevronRight, ArrowRight, LineChart, Shield } from 'lucide-react';
+import { 
+  ArrowRight, 
+  CheckCircle, 
+  TrendingUp, 
+  Users, 
+  Target, 
+  Award,
+  Phone,
+  Mail,
+  MapPin,
+  Menu,
+  X,
+  Star
+} from 'lucide-react';
 
-function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) {
+function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="p-6 rounded-2xl glass-effect hover:border-indigo-500/50 transition-all duration-500 group">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
-        <Icon className="w-6 h-6 text-indigo-400" />
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold text-gray-900">ProfResults</span>
+          </div>
+          
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+            <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors">Results</a>
+            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Get Started
+            </button>
+          </nav>
+
+          <button 
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t">
+            <nav className="flex flex-col space-y-4">
+              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+              <a href="#results" className="text-gray-700 hover:text-blue-600 transition-colors">Results</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors w-fit">
+                Get Started
+              </button>
+            </nav>
+          </div>
+        )}
       </div>
-      <h3 className="text-xl font-medium text-white mb-2 tracking-tight">{title}</h3>
-      <p className="text-[17px] text-gray-400 leading-relaxed font-light">{description}</p>
-    </div>
+    </header>
   );
 }
 
-function ContactForm() {
+function Hero() {
+  return (
+    <section id="home" className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              Drive <span className="text-blue-600">Professional Results</span> for Your Business
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              Transform your business with our proven strategies and expert consulting. 
+              We deliver measurable results that drive growth and maximize your ROI.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-lg font-semibold">
+                <span>Start Your Transformation</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-600 hover:text-white transition-colors text-lg font-semibold">
+                Schedule Consultation
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <img 
+              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Business professionals in meeting"
+              className="rounded-2xl shadow-2xl"
+            />
+            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <TrendingUp className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">250%</p>
+                  <p className="text-sm text-gray-600">Average ROI Increase</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const services = [
+    {
+      icon: Target,
+      title: "Strategic Planning",
+      description: "Develop comprehensive business strategies that align with your goals and drive sustainable growth."
+    },
+    {
+      icon: TrendingUp,
+      title: "Performance Optimization",
+      description: "Identify bottlenecks and optimize your operations for maximum efficiency and profitability."
+    },
+    {
+      icon: Users,
+      title: "Team Development",
+      description: "Build high-performing teams through leadership training and organizational development."
+    },
+    {
+      icon: Award,
+      title: "Process Excellence",
+      description: "Implement best practices and quality systems to ensure consistent, superior results."
+    }
+  ];
+
+  return (
+    <section id="services" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Our Professional Services
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            We provide comprehensive consulting services designed to transform your business 
+            and deliver measurable results across all areas of operation.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                <service.icon className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Results() {
+  const stats = [
+    { number: "500+", label: "Clients Served" },
+    { number: "250%", label: "Average ROI Increase" },
+    { number: "98%", label: "Client Satisfaction" },
+    { number: "15+", label: "Years Experience" }
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      company: "Tech Innovations Inc.",
+      text: "ProfResults transformed our business operations completely. We saw a 300% increase in efficiency within 6 months.",
+      rating: 5
+    },
+    {
+      name: "Michael Chen",
+      company: "Global Manufacturing",
+      text: "Their strategic planning helped us expand into new markets successfully. Exceptional results and professional service.",
+      rating: 5
+    },
+    {
+      name: "Emily Rodriguez",
+      company: "Healthcare Solutions",
+      text: "The team development program revolutionized our workplace culture. Highly recommend their services.",
+      rating: 5
+    }
+  ];
+
+  return (
+    <section id="results" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Proven Results That Matter
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our track record speaks for itself. See how we've helped businesses 
+            achieve extraordinary results and sustainable growth.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-8 mb-20">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-5xl font-bold text-blue-600 mb-2">{stat.number}</div>
+              <div className="text-gray-600 text-lg">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm">
+              <div className="flex mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+              <div>
+                <div className="font-bold text-gray-900">{testimonial.name}</div>
+                <div className="text-gray-500">{testimonial.company}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Why Choose ProfResults?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              With over 15 years of experience in business consulting, we've helped 
+              hundreds of companies achieve their goals and exceed their expectations.
+            </p>
+            
+            <div className="space-y-6">
+              {[
+                "Proven methodologies with measurable results",
+                "Expert team with diverse industry experience",
+                "Customized solutions for your unique challenges",
+                "Ongoing support and partnership approach"
+              ].map((item, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <span className="text-gray-700 text-lg">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="relative">
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Professional team collaboration"
+              className="rounded-2xl shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,147 +293,170 @@ function ContactForm() {
     console.log('Form submitted:', formData);
   };
 
-  const inputClasses = "w-full px-4 py-3 rounded-lg glass-effect text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500/50 transition-all duration-300 text-[17px]";
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-      <div>
-        <input
-          type="text"
-          placeholder="Your Name"
-          className={inputClasses}
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
+    <section id="contact" className="py-20 bg-blue-600">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div className="text-white">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+              Get in touch with our experts today and discover how we can help 
+              you achieve extraordinary results.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-semibold">Call Us</div>
+                  <div className="text-blue-100">+1 (555) 123-4567</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-semibold">Email Us</div>
+                  <div className="text-blue-100">contact@profresults.com</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-semibold">Visit Us</div>
+                  <div className="text-blue-100">123 Business Ave, Suite 100<br />New York, NY 10001</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-8 rounded-2xl">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Your Message"
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div>
-        <input
-          type="email"
-          placeholder="Your Email"
-          className={inputClasses}
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold">ProfResults</span>
+            </div>
+            <p className="text-gray-400 leading-relaxed">
+              Transforming businesses through professional consulting and proven strategies.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4">Services</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Strategic Planning</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Performance Optimization</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Team Development</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Process Excellence</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Our Team</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4">Contact</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>+1 (555) 123-4567</li>
+              <li>contact@profresults.com</li>
+              <li>123 Business Ave, Suite 100<br />New York, NY 10001</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 ProfResults. All rights reserved.</p>
+        </div>
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Company Name"
-          className={inputClasses}
-          value={formData.company}
-          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-        />
-      </div>
-      <div>
-        <textarea
-          placeholder="Your Message"
-          rows={4}
-          className={inputClasses}
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 glow-effect text-[17px]"
-      >
-        <span>Send Message</span>
-        <ArrowRight className="w-5 h-5" />
-      </button>
-    </form>
+    </footer>
   );
 }
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white selection:bg-indigo-500/30">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 via-purple-900/20 to-gray-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/20 via-purple-900/10 to-transparent"></div>
-        <div className="container mx-auto px-4 py-32">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-            <div className="lg:w-1/2 space-y-8">
-              <h1 className="text-6xl lg:text-7xl font-medium leading-tight tracking-tight">
-                Transform Your Business with
-                <span className="gradient-text block">EAGLE.AI</span>
-              </h1>
-              <p className="text-[21px] text-gray-300 leading-relaxed font-light">
-                Harness the power of AI to automate lead generation and seamlessly integrate with your CRM system.
-              </p>
-              <div className="flex items-center space-x-6">
-                <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center space-x-2 glow-effect text-[17px]">
-                  <span>Book A Call</span>
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-                <button className="px-8 py-4 rounded-lg glass-effect hover:border-indigo-500/50 transition-all duration-300 text-[17px] font-light">
-                  Learn More
-                </button>
-              </div>
-            </div>
-            <div className="lg:w-1/2 relative">
-              <div className="w-full h-[500px] rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-[2px] pulse-effect">
-                <div className="w-full h-full rounded-2xl glass-effect flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-transparent"></div>
-                  <Bot className="w-40 h-40 text-indigo-400 float-effect relative z-10" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="container mx-auto px-4 py-32">
-        <h2 className="text-5xl font-medium text-center mb-20 tracking-tight">
-          Powerful Features for Your <span className="gradient-text">Business Growth</span>
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={Bot}
-            title="AI-Powered Chatbots"
-            description="Engage visitors 24/7 with intelligent conversations that convert."
-          />
-          <FeatureCard
-            icon={MessageSquare}
-            title="Smart Lead Generation"
-            description="Automatically qualify and nurture leads through natural conversations."
-          />
-          <FeatureCard
-            icon={Database}
-            title="CRM Integration"
-            description="Seamlessly sync data with your existing CRM systems."
-          />
-          <FeatureCard
-            icon={LineChart}
-            title="Analytics Dashboard"
-            description="Track performance and optimize conversations in real-time."
-          />
-          <FeatureCard
-            icon={Shield}
-            title="Enterprise Security"
-            description="Bank-grade encryption and data protection protocols."
-          />
-          <FeatureCard
-            icon={Zap}
-            title="Quick Implementation"
-            description="Get started in minutes with our no-code setup process."
-          />
-        </div>
-      </div>
-
-      {/* Contact Section */}
-      <div className="container mx-auto px-4 py-32">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-medium mb-8 tracking-tight">
-            Ready to <span className="gradient-text">Transform</span> Your Business?
-          </h2>
-          <p className="text-[21px] text-gray-300 mb-16 leading-relaxed font-light">
-            Schedule a call with our experts and discover how EAGLE.AI can revolutionize your customer engagement.
-          </p>
-          <ContactForm />
-        </div>
-      </div>
+    <div className="min-h-screen">
+      <Header />
+      <Hero />
+      <Services />
+      <About />
+      <Results />
+      <Contact />
+      <Footer />
     </div>
   );
 }
